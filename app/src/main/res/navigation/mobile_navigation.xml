@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_basic_info"
-        android:name="project.ramezreda.resumy.ui.gallery.GalleryFragment"
+        android:name="project.ramezreda.resumy.ui.basicInfo.BasicInfoFragment"
         android:label="@string/menu_basic_info"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_summary"
-        android:name="project.ramezreda.resumy.ui.slideshow.SlideshowFragment"
+        android:name="project.ramezreda.resumy.ui.summary.SummaryFragment"
         android:label="@string/menu_summary"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
