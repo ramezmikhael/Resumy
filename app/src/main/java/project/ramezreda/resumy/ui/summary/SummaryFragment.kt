@@ -4,28 +4,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_summary.*
 import project.ramezreda.resumy.R
+import project.ramezreda.resumy.base.BaseFragment
+import project.ramezreda.resumy.databinding.FragmentSummaryBinding
 
-class SummaryFragment : Fragment() {
+class SummaryFragment<T : ViewDataBinding> : BaseFragment<T>() {
 
-    private lateinit var summaryViewModel: SummaryViewModel
+    private val summaryViewModel: SummaryViewModel by lazy {
+        ViewModelProvider(this).get(SummaryViewModel::class.java)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        summaryViewModel =
-                ViewModelProvider(this).get(SummaryViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_slideshow, container, false)
-        val textView: TextView = root.findViewById(R.id.text_slideshow)
+        super.onCreateView(inflater, container, savedInstanceState)
+
+        val summaryBinding = (binding as FragmentSummaryBinding)
+        summaryBinding.viewModel = summaryViewModel
+
         summaryViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+            text_summary.text = it
         })
-        return root
+
+        return binding.root
     }
+
+    override fun getLayoutRes(): Int = R.layout.fragment_summary
 }

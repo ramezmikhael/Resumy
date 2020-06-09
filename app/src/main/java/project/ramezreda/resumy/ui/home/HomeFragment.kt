@@ -4,28 +4,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_home.*
 import project.ramezreda.resumy.R
+import project.ramezreda.resumy.base.BaseFragment
+import project.ramezreda.resumy.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment<T : ViewDataBinding> : BaseFragment<T>() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel by lazy { ViewModelProvider(this).get(HomeViewModel::class.java) }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
+        super.onCreateView(inflater, container, savedInstanceState)
+
+        val homeBinding = (binding as FragmentHomeBinding)
+        homeBinding.viewModel = homeViewModel
+
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+            text_home.text = it
         })
-        return root
+
+        return binding.root
     }
+
+    override fun getLayoutRes(): Int = R.layout.fragment_home
 }

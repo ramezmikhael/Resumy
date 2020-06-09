@@ -15,11 +15,29 @@
         android:id="@+id/nav_basic_info"
         android:name="project.ramezreda.resumy.ui.basicInfo.BasicInfoFragment"
         android:label="@string/menu_basic_info"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_basic_info" />
 
     <fragment
         android:id="@+id/nav_summary"
         android:name="project.ramezreda.resumy.ui.summary.SummaryFragment"
         android:label="@string/menu_summary"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_summary" />
+
+    <fragment
+        android:id="@+id/nav_skills"
+        android:name="project.ramezreda.resumy.ui.skills.SkillsFragment"
+        android:label="@string/menu_skills"
+        tools:layout="@layout/fragment_skills" />
+
+    <fragment
+        android:id="@+id/nav_experience"
+        android:name="project.ramezreda.resumy.ui.experience.ExperienceFragment"
+        android:label="@string/menu_experience"
+        tools:layout="@layout/fragment_experience" />
+
+    <fragment
+        android:id="@+id/nav_education"
+        android:name="project.ramezreda.resumy.ui.education.EducationFragment"
+        android:label="@string/menu_education"
+        tools:layout="@layout/fragment_education" />
 </navigation>

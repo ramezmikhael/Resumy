@@ -4,28 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import project.ramezreda.resumy.R
+import project.ramezreda.resumy.base.BaseFragment
+import project.ramezreda.resumy.databinding.FragmentBasicInfoBinding
 
-class BasicInfoFragment : Fragment() {
+class BasicInfoFragment<T : ViewDataBinding> : BaseFragment<T>() {
 
-    private lateinit var basicInfoViewModel: BasicInfoViewModel
+    private val basicInfoViewModel by lazy { ViewModelProvider(this).get(BasicInfoViewModel::class.java) }
+
+    override fun getLayoutRes(): Int = R.layout.fragment_basic_info
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        basicInfoViewModel =
-                ViewModelProvider(this).get(BasicInfoViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_gallery, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        basicInfoViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        super.onCreateView(inflater, container, savedInstanceState)
+
+        (binding as FragmentBasicInfoBinding).viewModel = basicInfoViewModel
+
+        return binding.root
     }
 }
