@@ -8,26 +8,23 @@ import project.ramezreda.resumy.roomdb.dao.BasicInfoDao
 import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
 
 class BasicInfoRepository(application: Application) {
-    private var basicInfoDao: BasicInfoDao
+    private var basicInfoDao: BasicInfoDao?
 
     init {
-        val db = Room.databaseBuilder(application,
-            ResumeRoomDatabase::class.java,
-            "resumy_database")
-            .build()
+        val db = ResumeRoomDatabase.getDatabase(application)
 
-        basicInfoDao = db.basicInfoDao()!!
+        basicInfoDao = db?.basicInfoDao()
     }
 
     suspend fun insert(basicInfoEntity: BasicInfoEntity){
-        basicInfoDao.insert(basicInfoEntity)
+        basicInfoDao?.insert(basicInfoEntity)
     }
 
-    fun update(basicInfoEntity: BasicInfoEntity) {
-        basicInfoDao.update(basicInfoEntity)
+    suspend fun update(basicInfoEntity: BasicInfoEntity) {
+        basicInfoDao?.update(basicInfoEntity)
     }
 
     fun getTopOne() : LiveData<BasicInfoEntity?> {
-        return basicInfoDao.getTopOne()
+        return basicInfoDao?.getTopOne()!!
     }
 }

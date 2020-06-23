@@ -18,9 +18,9 @@ class BasicInfoViewModel(application: Application) : AndroidViewModel(applicatio
         basicInfo = mRepository?.getTopOne()
     }
 
-    suspend fun insert(basicInfoEntity: BasicInfoEntity?) {
+    suspend fun update(basicInfoEntity: BasicInfoEntity?) {
         if (basicInfoEntity != null) {
-            mRepository?.insert(basicInfoEntity)
+            mRepository?.update(basicInfoEntity)
         }
     }
 }

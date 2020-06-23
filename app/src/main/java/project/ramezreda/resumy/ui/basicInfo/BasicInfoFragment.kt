@@ -48,20 +48,17 @@ class BasicInfoFragment<T : ViewDataBinding> : BaseFragment<T>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_save) {
-            val basicInfo = fetchBasicInfo()
+            fetchBasicInfo()
             GlobalScope.launch {
-                viewModel.insert(basicInfo)
+                viewModel.update(viewModel.basicInfo?.value)
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun fetchBasicInfo(): BasicInfoEntity {
-        return BasicInfoEntity(
-            id = 1,
-            fullName = binding.root.editTextName.text.toString(),
-            email = binding.root.editTextEmail.text.toString(),
-            phone = binding.root.editTextPhone.text.toString()
-        )
+    private fun fetchBasicInfo() {
+        viewModel.basicInfo?.value?.fullName = binding.root.editTextName.text.toString()
+        viewModel.basicInfo?.value?.email = binding.root.editTextEmail.text.toString()
+        viewModel.basicInfo?.value?.phone = binding.root.editTextPhone.text.toString()
     }
 }

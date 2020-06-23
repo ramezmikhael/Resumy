@@ -6,11 +6,11 @@ import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
 
 @Dao
 interface BasicInfoDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(basicInfoEntity: BasicInfoEntity?)
 
     @Update
-    fun update(basicInfoEntity: BasicInfoEntity?)
+    suspend fun update(basicInfoEntity: BasicInfoEntity?)
 
     @Query("DELETE FROM basic_info")
     fun deleteAll()
