@@ -25,7 +25,7 @@ abstract class ResumeRoomDatabase : RoomDatabase() {
 
         private var dbCallback: Callback = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
-                val basicInfo = BasicInfoEntity(fullName = "", email = "", phone = "")
+                val basicInfo = BasicInfoEntity(fullName = "", email = "", phone = "", summary = "")
                 GlobalScope.launch {
                     instance?.basicInfoDao()?.insert(basicInfo)
                 }

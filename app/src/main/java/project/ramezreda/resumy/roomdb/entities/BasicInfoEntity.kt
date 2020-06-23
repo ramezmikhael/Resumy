@@ -14,5 +14,6 @@ data class BasicInfoEntity(
     var fullName: String,
 
     var email: String,
-    var phone: String
+    var phone: String,
+    var summary: String
 )

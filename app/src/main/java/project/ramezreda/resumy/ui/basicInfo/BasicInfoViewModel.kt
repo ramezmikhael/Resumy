@@ -9,18 +9,18 @@ import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
 
 class BasicInfoViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var mRepository: BasicInfoRepository? = null
+    private var repository: BasicInfoRepository? = null
 
     var basicInfo: LiveData<BasicInfoEntity?>? = null
 
     init {
-        mRepository = BasicInfoRepository(application)
-        basicInfo = mRepository?.getTopOne()
+        repository = BasicInfoRepository(application)
+        basicInfo = repository?.getTopOne()
     }
 
     suspend fun update(basicInfoEntity: BasicInfoEntity?) {
         if (basicInfoEntity != null) {
-            mRepository?.update(basicInfoEntity)
+            repository?.update(basicInfoEntity)
         }
     }
 }

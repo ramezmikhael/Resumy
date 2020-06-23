@@ -1,13 +1,19 @@
 package project.ramezreda.resumy.ui.home
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import project.ramezreda.resumy.repository.BasicInfoRepository
+import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private var repository: BasicInfoRepository? = null
+
+    var basicInfo: LiveData<BasicInfoEntity?>? = null
+
+    init {
+        repository = BasicInfoRepository(application)
+        basicInfo = repository?.getTopOne()
     }
-    val text: LiveData<String> = _text
 }

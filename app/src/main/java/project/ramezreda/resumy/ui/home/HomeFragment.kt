@@ -8,6 +8,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_summary.view.*
+import kotlinx.android.synthetic.main.home_basic_info.view.*
+import kotlinx.android.synthetic.main.home_summary.view.*
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.base.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentHomeBinding
@@ -26,8 +29,11 @@ class HomeFragment<T : ViewDataBinding> : BaseFragment<T>() {
         val homeBinding = (binding as FragmentHomeBinding)
         homeBinding.viewModel = homeViewModel
 
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            text_home.text = it
+        homeViewModel.basicInfo?.observe(viewLifecycleOwner, Observer {
+            segment_basic_info.textViewName.text = it?.fullName
+            segment_basic_info.textViewPhone.text = it?.phone
+            segment_basic_info.textViewEmail.text = it?.email
+            segment_summary?.textViewSummary?.text = it?.summary
         })
 
         return binding.root
