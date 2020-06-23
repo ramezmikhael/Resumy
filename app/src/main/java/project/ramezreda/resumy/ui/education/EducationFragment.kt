@@ -29,12 +29,7 @@ class EducationFragment<T : ViewDataBinding> : BaseFragment<T>() {
         bindingEducation.viewModel = viewModel
 
         bindingEducation.fabLayout.fab.setOnClickListener {
-            val snackbar = Snackbar.make(bindingEducation.fabLayout.fab, "Change me!", Snackbar.LENGTH_INDEFINITE)
-            snackbar.setAction(R.string.app_name) {
-                Log.d("app_name", "app_name")
-            }
-            snackbar.animationMode = Snackbar.ANIMATION_MODE_FADE
-            snackbar.show()
+            // TODO
         }
         return binding.root
     }

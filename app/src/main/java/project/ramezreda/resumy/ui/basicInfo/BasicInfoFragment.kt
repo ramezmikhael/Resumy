@@ -1,18 +1,22 @@
 package project.ramezreda.resumy.ui.basicInfo
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_basic_info.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.base.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentBasicInfoBinding
+import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
 
 class BasicInfoFragment<T : ViewDataBinding> : BaseFragment<T>() {
 
-    private val basicInfoViewModel by lazy { ViewModelProvider(this).get(BasicInfoViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(BasicInfoViewModel::class.java) }
 
     override fun getLayoutRes(): Int = R.layout.fragment_basic_info
 
@@ -23,8 +27,41 @@ class BasicInfoFragment<T : ViewDataBinding> : BaseFragment<T>() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        (binding as FragmentBasicInfoBinding).viewModel = basicInfoViewModel
+        (binding as FragmentBasicInfoBinding).viewModel = viewModel
+
+        setHasOptionsMenu(true)
+
+        viewModel.basicInfo?.observe(viewLifecycleOwner, Observer {
+            binding.root.editTextName.setText(it?.fullName)
+            binding.root.editTextEmail.setText(it?.email)
+            binding.root.editTextPhone.setText(it?.phone)
+        })
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.menu_save, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_save) {
+            val basicInfo = fetchBasicInfo()
+            GlobalScope.launch {
+                viewModel.insert(basicInfo)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun fetchBasicInfo(): BasicInfoEntity {
+        return BasicInfoEntity(
+            id = 1,
+            fullName = binding.root.editTextName.text.toString(),
+            email = binding.root.editTextEmail.text.toString(),
+            phone = binding.root.editTextPhone.text.toString()
+        )
     }
 }

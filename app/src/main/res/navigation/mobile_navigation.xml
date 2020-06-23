@@ -14,8 +14,7 @@
     <fragment
         android:id="@+id/nav_basic_info"
         android:name="project.ramezreda.resumy.ui.basicInfo.BasicInfoFragment"
-        android:label="@string/menu_basic_info"
-        tools:layout="@layout/fragment_basic_info" />
+        android:label="@string/menu_basic_info" />
 
     <fragment
         android:id="@+id/nav_summary"

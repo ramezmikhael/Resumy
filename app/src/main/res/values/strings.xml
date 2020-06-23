@@ -22,4 +22,5 @@
     <string name="your_email_address">Your email address</string>
     <string name="phone">Phone</string>
     <string name="your_phone_number">Your phone number</string>
+    <string name="action_save">Save</string>
 </resources>
