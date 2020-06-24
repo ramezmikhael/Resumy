@@ -1,22 +1,24 @@
 package project.ramezreda.resumy.ui.basicInfo
 
+import android.app.Application
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_basic_info.view.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import project.ramezreda.resumy.MyApplication
 import project.ramezreda.resumy.R
-import project.ramezreda.resumy.base.BaseFragment
+import project.ramezreda.resumy.ui.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentBasicInfoBinding
-import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
+import project.ramezreda.resumy.di.ApplicationContextModule
+import project.ramezreda.resumy.di.DaggerAppComponent
+import javax.inject.Inject
 
-class BasicInfoFragment<T : ViewDataBinding> : BaseFragment<T>() {
+class BasicInfoFragment : BaseFragment() {
 
-    private val viewModel by lazy { ViewModelProvider(this).get(BasicInfoViewModel::class.java) }
+    @Inject lateinit var viewModel : BasicInfoViewModel
 
     override fun getLayoutRes(): Int = R.layout.fragment_basic_info
 
@@ -27,9 +29,9 @@ class BasicInfoFragment<T : ViewDataBinding> : BaseFragment<T>() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        (binding as FragmentBasicInfoBinding).viewModel = viewModel
+        MyApplication.component.inject(this)
 
-        setHasOptionsMenu(true)
+        (binding as FragmentBasicInfoBinding).viewModel = viewModel
 
         viewModel.basicInfo?.observe(viewLifecycleOwner, Observer {
             binding.root.editTextName.setText(it?.fullName)
@@ -41,9 +43,9 @@ class BasicInfoFragment<T : ViewDataBinding> : BaseFragment<T>() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
         menu.clear()
         inflater.inflate(R.menu.menu_save, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

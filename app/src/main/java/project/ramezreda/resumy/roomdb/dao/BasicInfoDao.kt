@@ -10,7 +10,7 @@ interface BasicInfoDao {
     suspend fun insert(basicInfoEntity: BasicInfoEntity?)
 
     @Update
-    suspend fun update(basicInfoEntity: BasicInfoEntity?)
+    suspend fun update(basicInfoEntity: BasicInfoEntity?) : Int
 
     @Query("DELETE FROM basic_info")
     fun deleteAll()

@@ -1,29 +1,32 @@
 package project.ramezreda.resumy.ui.education
 
+import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fab_layout.view.*
+import project.ramezreda.resumy.MyApplication
 import project.ramezreda.resumy.R
-import project.ramezreda.resumy.base.BaseFragment
+import project.ramezreda.resumy.ui.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentEducationBinding
+import project.ramezreda.resumy.di.ApplicationContextModule
+import project.ramezreda.resumy.di.DaggerAppComponent
+import javax.inject.Inject
 
-class EducationFragment<T : ViewDataBinding> : BaseFragment<T>() {
+class EducationFragment : BaseFragment() {
 
-    private val viewModel: EducationViewModel by lazy {
-        ViewModelProvider(this).get(EducationViewModel::class.java)
-    }
+    @Inject
+    lateinit var viewModel: EducationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+
+        MyApplication.component.inject(this)
 
         val bindingEducation = (binding as FragmentEducationBinding)
         bindingEducation.viewModel = viewModel

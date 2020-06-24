@@ -2,28 +2,30 @@ package project.ramezreda.resumy.ui.summary
 
 import android.os.Bundle
 import android.view.*
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_summary.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import project.ramezreda.resumy.MyApplication
 import project.ramezreda.resumy.R
-import project.ramezreda.resumy.base.BaseFragment
+import project.ramezreda.resumy.ui.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentSummaryBinding
+import javax.inject.Inject
 
-class SummaryFragment<T : ViewDataBinding> : BaseFragment<T>() {
+class SummaryFragment : BaseFragment() {
 
-    private val viewModel: SummaryViewModel by lazy {
-        ViewModelProvider(this).get(SummaryViewModel::class.java)
-    }
+    @Inject
+    lateinit var viewModel: SummaryViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+
+        MyApplication.component.inject(this)
 
         val summaryBinding = (binding as FragmentSummaryBinding)
         summaryBinding.viewModel = viewModel
@@ -43,7 +45,7 @@ class SummaryFragment<T : ViewDataBinding> : BaseFragment<T>() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_save) {
+        if (item.itemId == R.id.action_save) {
             viewModel.basicInfo?.value?.summary = text_summary.text.toString()
             GlobalScope.launch {
                 viewModel.update(viewModel.basicInfo?.value)

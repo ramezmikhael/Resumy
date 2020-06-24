@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import project.ramezreda.resumy.R
-import project.ramezreda.resumy.base.BaseFragment
+import project.ramezreda.resumy.ui.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentExperienceBinding
 
-class ExperienceFragment<T : ViewDataBinding> : BaseFragment<T>() {
+class ExperienceFragment : BaseFragment() {
 
     private val viewModel: ExperienceViewModel by lazy {
         ViewModelProvider(this).get(ExperienceViewModel::class.java)

@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_skills.*
 import project.ramezreda.resumy.R
-import project.ramezreda.resumy.base.BaseFragment
+import project.ramezreda.resumy.ui.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentSkillsBinding
 
-class SkillsFragment<T : ViewDataBinding> : BaseFragment<T>() {
+class SkillsFragment: BaseFragment() {
 
     private val skillsViewModel: SkillsViewModel by lazy { ViewModelProvider(this).get(SkillsViewModel::class.java) }
 

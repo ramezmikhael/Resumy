@@ -2,7 +2,6 @@ package project.ramezreda.resumy.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import androidx.room.Room
 import project.ramezreda.resumy.roomdb.ResumeRoomDatabase
 import project.ramezreda.resumy.roomdb.dao.BasicInfoDao
 import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
@@ -20,8 +19,8 @@ class BasicInfoRepository(application: Application) {
         basicInfoDao?.insert(basicInfoEntity)
     }
 
-    suspend fun update(basicInfoEntity: BasicInfoEntity) {
-        basicInfoDao?.update(basicInfoEntity)
+    suspend fun update(basicInfoEntity: BasicInfoEntity) : Int? {
+        return basicInfoDao?.update(basicInfoEntity)
     }
 
     fun getTopOne() : LiveData<BasicInfoEntity?> {
