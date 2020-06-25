@@ -18,9 +18,10 @@ class SummaryViewModel @Inject constructor(application: Application) : AndroidVi
         basicInfo = repository?.getAll()
     }
 
-    suspend fun update(basicInfoEntity: BasicInfoEntity?) {
+    suspend fun update(basicInfoEntity: BasicInfoEntity?) : Int? {
         if (basicInfoEntity != null) {
-            repository?.update(basicInfoEntity)
+            return repository?.update(basicInfoEntity)
         }
+        return null
     }
 }

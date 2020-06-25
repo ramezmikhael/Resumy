@@ -5,12 +5,16 @@ import android.os.Bundle
 import android.view.*
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_summary.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentSummaryBinding
 import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
+import project.ramezreda.resumy.di.NotificationsModule
+import project.ramezreda.resumy.notifications.INotification
 import project.ramezreda.resumy.ui.BaseFragment
 import javax.inject.Inject
 
@@ -18,6 +22,9 @@ class SummaryFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel: SummaryViewModel
+
+    @Inject
+    lateinit var notification: INotification
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,9 +35,12 @@ class SummaryFragment : BaseFragment() {
 
         DaggerAppComponent.builder()
             .applicationContextModule(
-                ApplicationContextModule(requireContext().applicationContext as Application,
-                requireContext())
+                ApplicationContextModule(
+                    requireContext().applicationContext as Application,
+                    requireContext()
+                )
             )
+            .notificationsModule(NotificationsModule(requireContext()))
             .build()
             .inject(this)
 
@@ -54,8 +64,13 @@ class SummaryFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_save) {
             viewModel.basicInfo?.value?.first()?.summary = text_summary.text.toString()
-            GlobalScope.launch {
+            val job = GlobalScope.async {
                 viewModel.update(viewModel.basicInfo?.value?.first())
+            }
+
+            GlobalScope.launch(Dispatchers.Main) {
+                val result = job.await()
+                notification.showUpdateToast(result = result)
             }
         }
         return super.onOptionsItemSelected(item)
