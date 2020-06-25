@@ -11,11 +11,11 @@ class SummaryViewModel @Inject constructor(application: Application) : AndroidVi
 
     private var repository: BasicInfoRepository? = null
 
-    var basicInfo: LiveData<BasicInfoEntity?>? = null
+    var basicInfo: LiveData<List<BasicInfoEntity?>>? = null
 
     init {
         repository = BasicInfoRepository(application)
-        basicInfo = repository?.getTopOne()
+        basicInfo = repository?.getAll()
     }
 
     suspend fun update(basicInfoEntity: BasicInfoEntity?) {

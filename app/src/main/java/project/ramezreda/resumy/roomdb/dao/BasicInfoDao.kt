@@ -15,6 +15,6 @@ interface BasicInfoDao {
     @Query("DELETE FROM basic_info")
     fun deleteAll()
 
-    @Query("SELECT * FROM basic_info LIMIT 1")
-    fun getTopOne() : LiveData<BasicInfoEntity?>
+    @Query("SELECT * FROM basic_info")
+    fun getAll() : LiveData<List<BasicInfoEntity?>>
 }

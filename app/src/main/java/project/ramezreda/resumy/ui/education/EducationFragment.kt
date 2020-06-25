@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fab_layout.view.*
-import project.ramezreda.resumy.MyApplication
 import project.ramezreda.resumy.R
-import project.ramezreda.resumy.ui.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentEducationBinding
 import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
+import project.ramezreda.resumy.ui.BaseFragment
 import javax.inject.Inject
 
 class EducationFragment : BaseFragment() {
@@ -26,7 +24,11 @@ class EducationFragment : BaseFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        MyApplication.component.inject(this)
+        DaggerAppComponent
+            .builder()
+            .applicationContextModule(ApplicationContextModule( requireContext().applicationContext!! as Application, requireContext()))
+            .build()
+            .inject(this)
 
         val bindingEducation = (binding as FragmentEducationBinding)
         bindingEducation.viewModel = viewModel

@@ -8,8 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_skills.*
 import project.ramezreda.resumy.R
-import project.ramezreda.resumy.ui.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentSkillsBinding
+import project.ramezreda.resumy.ui.BaseFragment
 
 class SkillsFragment: BaseFragment() {
 

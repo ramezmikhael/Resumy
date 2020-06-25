@@ -5,8 +5,9 @@ import androidx.lifecycle.LiveData
 import project.ramezreda.resumy.roomdb.ResumeRoomDatabase
 import project.ramezreda.resumy.roomdb.dao.BasicInfoDao
 import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
+import javax.inject.Inject
 
-class BasicInfoRepository(application: Application) {
+class BasicInfoRepository @Inject constructor(application: Application) {
     private var basicInfoDao: BasicInfoDao?
 
     init {
@@ -23,7 +24,7 @@ class BasicInfoRepository(application: Application) {
         return basicInfoDao?.update(basicInfoEntity)
     }
 
-    fun getTopOne() : LiveData<BasicInfoEntity?> {
-        return basicInfoDao?.getTopOne()!!
+    fun getAll() : LiveData<List<BasicInfoEntity?>> {
+        return basicInfoDao?.getAll()!!
     }
 }

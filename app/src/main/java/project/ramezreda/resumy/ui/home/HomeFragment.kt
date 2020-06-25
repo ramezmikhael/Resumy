@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_basic_info.view.*
 import kotlinx.android.synthetic.main.home_summary.view.*
 import project.ramezreda.resumy.R
-import project.ramezreda.resumy.ui.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentHomeBinding
+import project.ramezreda.resumy.ui.BaseFragment
 
 class HomeFragment : BaseFragment() {
 
@@ -28,10 +28,10 @@ class HomeFragment : BaseFragment() {
         homeBinding.viewModel = homeViewModel
 
         homeViewModel.basicInfo?.observe(viewLifecycleOwner, Observer {
-            segment_basic_info.textViewName.text = it?.fullName
-            segment_basic_info.textViewPhone.text = it?.phone
-            segment_basic_info.textViewEmail.text = it?.email
-            segment_summary?.textViewSummary?.text = it?.summary
+            segment_basic_info.textViewName.text = it?.first()?.fullName
+            segment_basic_info.textViewPhone.text = it?.first()?.phone
+            segment_basic_info.textViewEmail.text = it?.first()?.email
+            segment_summary?.textViewSummary?.text = it?.first()?.summary
         })
 
         return binding.root

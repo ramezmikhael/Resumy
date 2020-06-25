@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import project.ramezreda.resumy.R
-import project.ramezreda.resumy.ui.BaseFragment
 import project.ramezreda.resumy.databinding.FragmentExperienceBinding
+import project.ramezreda.resumy.ui.BaseFragment
 
 class ExperienceFragment : BaseFragment() {
 

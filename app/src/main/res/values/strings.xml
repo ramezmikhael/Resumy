@@ -24,4 +24,6 @@
     <string name="your_phone_number">Your phone number</string>
     <string name="action_save">Save</string>
     <string name="summary_hint">Write something awesome about yourself!</string>
+    <string name="success">Success!</string>
+    <string name="fail">Failed!</string>
 </resources>
