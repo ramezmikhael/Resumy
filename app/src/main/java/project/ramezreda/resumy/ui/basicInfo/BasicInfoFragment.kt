@@ -13,18 +13,17 @@ import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentBasicInfoBinding
 import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
-import project.ramezreda.resumy.notifications.FailNotification
-import project.ramezreda.resumy.notifications.Notification
-import project.ramezreda.resumy.notifications.SuccessNotification
+import project.ramezreda.resumy.di.NotificationsModule
+import project.ramezreda.resumy.notifications.INotification
 import project.ramezreda.resumy.ui.BaseFragment
 import javax.inject.Inject
 
 class BasicInfoFragment : BaseFragment() {
 
-    @Inject lateinit var viewModel : BasicInfoViewModel
-    @Inject lateinit var successNotification: SuccessNotification
-    @Inject lateinit var failNotification: FailNotification
-    @Inject lateinit var notification: Notification
+    @Inject
+    lateinit var viewModel: BasicInfoViewModel
+    @Inject
+    lateinit var notification: INotification
 
     override fun getLayoutRes(): Int = R.layout.fragment_basic_info
 
@@ -36,8 +35,13 @@ class BasicInfoFragment : BaseFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         DaggerAppComponent.builder()
-            .applicationContextModule(ApplicationContextModule(requireContext().applicationContext as Application,
-            requireContext()))
+            .applicationContextModule(
+                ApplicationContextModule(
+                    requireContext().applicationContext as Application,
+                    requireContext()
+                )
+            )
+            .notificationsModule(NotificationsModule(requireContext()))
             .build()
             .inject(this)
 
@@ -67,11 +71,7 @@ class BasicInfoFragment : BaseFragment() {
 
             GlobalScope.launch(Dispatchers.Main) {
                 val res = job.await()
-                if(res?.compareTo(0)!! > 0) {
-                    notification.showToast(successNotification)
-                } else {
-                    notification.showToast(failNotification)
-                }
+                notification.showUpdateToast(res)
             }
         }
         return super.onOptionsItemSelected(item)

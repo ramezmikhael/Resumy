@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
+import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.repository.BasicInfoRepository
 import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
 import javax.inject.Inject
@@ -21,6 +22,7 @@ class BasicInfoViewModel @Inject constructor(application: Application) :
                 ApplicationContextModule(application,
                 application)
             )
+            .notificationsModule(NotificationsModule(application))
             .build()
             .inject(this)
     }
