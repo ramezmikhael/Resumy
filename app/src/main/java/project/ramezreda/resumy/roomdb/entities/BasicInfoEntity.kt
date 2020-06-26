@@ -14,5 +14,8 @@ data class BasicInfoEntity(
 
     var email: String,
     var phone: String,
-    var summary: String
+    var summary: String,
+
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    var picture: ByteArray?
 )

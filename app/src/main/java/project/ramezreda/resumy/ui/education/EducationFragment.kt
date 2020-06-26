@@ -10,6 +10,7 @@ import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentEducationBinding
 import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
+import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.ui.BaseFragment
 import javax.inject.Inject
 
@@ -26,7 +27,13 @@ class EducationFragment : BaseFragment() {
 
         DaggerAppComponent
             .builder()
-            .applicationContextModule(ApplicationContextModule( requireContext().applicationContext!! as Application, requireContext()))
+            .applicationContextModule(
+                ApplicationContextModule(
+                    requireContext().applicationContext!! as Application,
+                    requireContext()
+                )
+            )
+            .notificationsModule(NotificationsModule(requireContext()))
             .build()
             .inject(this)
 
