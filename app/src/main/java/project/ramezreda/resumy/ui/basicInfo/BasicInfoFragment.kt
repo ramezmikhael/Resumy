@@ -2,24 +2,17 @@ package project.ramezreda.resumy.ui.basicInfo
 
 import android.app.Application
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Picture
-import android.media.Image
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.drawToBitmap
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.fragment_basic_info.*
 import kotlinx.android.synthetic.main.fragment_basic_info.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import project.ramezreda.resumy.ImageConverter
+import project.ramezreda.resumy.utils.ImageConverter
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentBasicInfoBinding
 import project.ramezreda.resumy.di.ApplicationContextModule

@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.fragment_basic_info.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_basic_info.view.*
 import kotlinx.android.synthetic.main.home_basic_info.view.textViewEmail
 import kotlinx.android.synthetic.main.home_basic_info.view.textViewName
 import kotlinx.android.synthetic.main.home_basic_info.view.textViewPhone
 import kotlinx.android.synthetic.main.home_summary.view.*
-import project.ramezreda.resumy.ImageConverter
+import project.ramezreda.resumy.utils.ImageConverter
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentHomeBinding
 import project.ramezreda.resumy.ui.BaseFragment

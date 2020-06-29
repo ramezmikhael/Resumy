@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import dagger.Component
 import project.ramezreda.resumy.notifications.Notification
+import project.ramezreda.resumy.ui.MainActivity
 import project.ramezreda.resumy.ui.basicInfo.BasicInfoFragment
 import project.ramezreda.resumy.ui.basicInfo.BasicInfoViewModel
 import project.ramezreda.resumy.ui.education.EducationFragment
@@ -22,6 +23,8 @@ interface AppComponent {
     fun inject(basicInfoFragment: BasicInfoFragment)
     fun inject(educationFragment: EducationFragment)
     fun inject(summaryFragment: SummaryFragment)
+
+    fun inject(mainActivity: MainActivity)
 
     fun inject(notification: Notification)
 

@@ -31,7 +31,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto"
             tools:text="Ramez Reda Ameen Mikhael" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageViewPhoto"
             android:layout_width="128dp"
             android:layout_height="128dp"

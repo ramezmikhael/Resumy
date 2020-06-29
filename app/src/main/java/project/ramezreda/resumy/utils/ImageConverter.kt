@@ -1,4 +1,4 @@
-package project.ramezreda.resumy
+package project.ramezreda.resumy.utils
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
