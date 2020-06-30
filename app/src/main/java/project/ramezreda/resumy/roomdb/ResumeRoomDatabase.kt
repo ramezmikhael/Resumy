@@ -8,14 +8,18 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import project.ramezreda.resumy.roomdb.dao.BasicInfoDao
+import project.ramezreda.resumy.roomdb.dao.SkillsDao
 import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
+import project.ramezreda.resumy.roomdb.entities.SkillsEntity
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 
-@Database(entities = [BasicInfoEntity::class], version = 1)
+@Database(entities = [BasicInfoEntity::class, SkillsEntity::class], version = 1)
 abstract class ResumeRoomDatabase : RoomDatabase() {
     abstract fun basicInfoDao(): BasicInfoDao?
+    abstract fun skillsDao(): SkillsDao?
+
 
     companion object {
         @Volatile

@@ -26,4 +26,6 @@
     <string name="summary_hint">Write something awesome about yourself!</string>
     <string name="success">Success!</string>
     <string name="fail">Failed!</string>
+    <string name="add_skills_or_tools">Add skills or tools</string>
+    <string name="add">Add</string>
 </resources>

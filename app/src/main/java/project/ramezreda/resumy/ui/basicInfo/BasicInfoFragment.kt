@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import project.ramezreda.resumy.utils.ImageConverter
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentBasicInfoBinding
 import project.ramezreda.resumy.di.ApplicationContextModule
@@ -20,6 +19,7 @@ import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.notifications.INotification
 import project.ramezreda.resumy.ui.BaseFragment
+import project.ramezreda.resumy.utils.ImageConverter
 import javax.inject.Inject
 
 class BasicInfoFragment : BaseFragment() {

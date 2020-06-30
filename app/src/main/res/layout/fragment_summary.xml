@@ -19,7 +19,7 @@
             android:id="@+id/text_summary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/edittext_background"
+            android:background="@drawable/edittext_borderless_background"
             android:gravity="start"
             android:hint="@string/summary_hint"
             android:padding="@dimen/fab_margin"

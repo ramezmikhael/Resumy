@@ -5,4 +5,8 @@
     <color name="colorPrimaryLight">#DE787C</color>
     <color name="colorAccent">#2897ce</color>
     <color name="colorText">#1f2022</color>
+    <color name="lightGray">#C6CBD2</color>
+
+    <color name="skillBackground">#FED1CF</color>
+    <color name="skillTextColor">#9D0000</color>
 </resources>

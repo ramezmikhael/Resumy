@@ -1,19 +1,42 @@
 package project.ramezreda.resumy.ui.skills
 
+import android.app.Application
 import android.os.Bundle
+import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.fragment_skills.*
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentSkillsBinding
+import project.ramezreda.resumy.di.ApplicationContextModule
+import project.ramezreda.resumy.di.DaggerAppComponent
+import project.ramezreda.resumy.di.NotificationsModule
+import project.ramezreda.resumy.notifications.INotification
+import project.ramezreda.resumy.roomdb.entities.SkillsEntity
 import project.ramezreda.resumy.ui.BaseFragment
+import javax.inject.Inject
 
-class SkillsFragment: BaseFragment() {
+class SkillsFragment : BaseFragment() {
 
-    private val skillsViewModel: SkillsViewModel by lazy { ViewModelProvider(this).get(SkillsViewModel::class.java) }
+    @Inject
+    lateinit var skillsViewModel: SkillsViewModel
+
+    @Inject
+    lateinit var notification: INotification
+
+    @Inject
+    lateinit var skillsDataAdapter: SkillsDataAdapter
+
+    private lateinit var skillsBinding: FragmentSkillsBinding
+
+    override fun getLayoutRes(): Int = R.layout.fragment_skills
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,16 +44,57 @@ class SkillsFragment: BaseFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val skillsBinding = (binding as FragmentSkillsBinding)
-        skillsBinding.viewModel = skillsViewModel
+        initDagger()
+        initDataBinding()
+        initSkillsRecyclerView()
 
-        skillsViewModel.text.observe(viewLifecycleOwner, Observer {
-            text_skills.text = it
+        skillsBinding.buttonAddSkill.setOnClickListener {
+            insertSkill()
+        }
+
+        skillsViewModel.skills.observe(viewLifecycleOwner, Observer {
+            skillsDataAdapter.setData(it)
+            skillsBinding.recyclerViewSkills.adapter?.notifyDataSetChanged()
         })
 
-        return binding.root
+        return skillsBinding.root
     }
 
-    override fun getLayoutRes(): Int = R.layout.fragment_skills
+    private fun initDagger() {
+        DaggerAppComponent.builder()
+            .applicationContextModule(
+                ApplicationContextModule(
+                    requireContext().applicationContext as Application,
+                    requireContext()
+                )
+            )
+            .notificationsModule(NotificationsModule(requireContext()))
+            .build().inject(this)
+    }
+
+    private fun initDataBinding() {
+        skillsBinding = (binding as FragmentSkillsBinding)
+        skillsBinding.viewModel = skillsViewModel
+        skillsBinding.lifecycleOwner = viewLifecycleOwner
+    }
+
+    private fun initSkillsRecyclerView() {
+        val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+
+        skillsBinding.recyclerViewSkills.adapter = skillsDataAdapter
+        skillsBinding.recyclerViewSkills.layoutManager = layoutManager
+    }
+
+    private fun insertSkill() {
+        val job = GlobalScope.async {
+            skillsViewModel.insert(SkillsEntity(skill = skillsBinding.editTextSkill.text.toString()))
+        }
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val id = job.await()
+            notification.showInsertToast(id)
+            skillsBinding.editTextSkill.text.clear()
+        }
+    }
 
 }
