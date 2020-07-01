@@ -1,6 +1,7 @@
 package project.ramezreda.resumy.ui.skills
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import project.ramezreda.resumy.di.ApplicationContextModule
@@ -29,5 +30,12 @@ class SkillsViewModel @Inject constructor(application: Application) :
     suspend fun insert(skillsEntity: SkillsEntity): Long? {
         return skillsRepository.insert(skillsEntity)
     }
+
+    suspend fun deleteMany(ids: List<Int>) : Int? {
+
+//        Log.d("IDS", ids)
+        return skillsRepository.deleteMany(ids)
+    }
+
 
 }

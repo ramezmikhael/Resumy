@@ -21,10 +21,14 @@ class SkillsRepository @Inject constructor(application: Application) {
     }
 
     suspend fun delete(skillsEntity: SkillsEntity) {
-        skillsDao?.delete(skillsEntity)
+
     }
 
     fun getAll(): LiveData<List<SkillsEntity?>> {
         return skillsDao?.getAll()!!
+    }
+
+    suspend fun deleteMany(ids: List<Int>): Int? {
+        return skillsDao?.deleteMany(ids)
     }
 }

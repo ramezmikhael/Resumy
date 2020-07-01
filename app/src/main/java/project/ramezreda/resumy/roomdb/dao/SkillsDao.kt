@@ -14,4 +14,7 @@ interface SkillsDao {
 
     @Query("SELECT * FROM skills")
     fun getAll() : LiveData<List<SkillsEntity?>>
+
+    @Query("DELETE FROM skills WHERE id IN (:ids)")
+    suspend fun deleteMany(ids: List<Int>): Int?
 }
