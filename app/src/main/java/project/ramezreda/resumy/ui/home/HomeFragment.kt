@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -45,6 +46,19 @@ class HomeFragment : BaseFragment() {
         initSkillsRecyclerView()
         initObservers()
 
+        homeBinding.segmentBasicInfo.editBasicInfo.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavHomeToNavBasicInfo()
+            it.findNavController().navigate(action)
+        }
+        homeBinding.segmentSummary.editSummary.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavHomeToNavSummary()
+            it.findNavController().navigate(action)
+        }
+        homeBinding.segmentSkills.editSkills.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavHomeToNavSkills()
+            it.findNavController().navigate(action)
+        }
+
         return binding.root
     }
 
@@ -68,7 +82,7 @@ class HomeFragment : BaseFragment() {
 
     private fun initObservers() {
         homeViewModel.basicInfo?.observe(viewLifecycleOwner, Observer {
-            if(it.isEmpty()) {
+            if (it.isEmpty()) {
                 return@Observer
             }
             segment_basic_info.textViewName.text = it?.first()?.fullName
@@ -77,7 +91,7 @@ class HomeFragment : BaseFragment() {
             segment_summary?.textViewSummary?.text = it?.first()?.summary
 
             val image = ImageConverter.byteArrayToBitmap(it?.first()?.picture)
-            image?.let { bitmap ->  segment_basic_info?.imageViewPhoto?.setImageBitmap(bitmap) }
+            image?.let { bitmap -> segment_basic_info?.imageViewPhoto?.setImageBitmap(bitmap) }
         })
 
         homeViewModel.skills?.observe(viewLifecycleOwner, Observer {
@@ -89,7 +103,9 @@ class HomeFragment : BaseFragment() {
     fun initSkillsRecyclerView() {
         skillsDataAdapter.clickableItems = false
         homeBinding.segmentSkills.recycler_view_skills.adapter = skillsDataAdapter
-        homeBinding.segmentSkills.recycler_view_skills.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        homeBinding.segmentSkills.recycler_view_skills.layoutManager =
+            StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
     }
+
     override fun getLayoutRes(): Int = R.layout.fragment_home
 }
