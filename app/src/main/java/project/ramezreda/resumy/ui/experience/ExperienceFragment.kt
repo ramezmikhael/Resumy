@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentExperienceBinding
@@ -15,13 +16,26 @@ class ExperienceFragment : BaseFragment() {
         ViewModelProvider(this).get(ExperienceViewModel::class.java)
     }
 
+    private lateinit var experienceBinding: FragmentExperienceBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        (binding as FragmentExperienceBinding).viewModel = viewModel
+        experienceBinding = (binding as FragmentExperienceBinding)
+        experienceBinding.viewModel = viewModel
+
+        viewModel.experience?.observe(viewLifecycleOwner, Observer {
+            if(it.isEmpty()) {
+                experienceBinding.noExperienceTextView.visibility = View.VISIBLE
+                experienceBinding.experienceRecyclerView.visibility = View.GONE
+            } else {
+                experienceBinding.noExperienceTextView.visibility = View.GONE
+                experienceBinding.experienceRecyclerView.visibility = View.VISIBLE
+            }
+        })
 
         return binding.root
     }

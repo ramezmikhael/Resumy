@@ -31,4 +31,5 @@
     <string name="action_delete">Delete</string>
     <string name="skills">SKILLS</string>
     <string name="summary">SUMMARY</string>
+    <string name="no_experience">No experience added yet! Impress your next employer with your awesome work!</string>
 </resources>
