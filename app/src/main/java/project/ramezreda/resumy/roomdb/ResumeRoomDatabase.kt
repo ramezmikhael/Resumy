@@ -8,17 +8,23 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import project.ramezreda.resumy.roomdb.dao.BasicInfoDao
+import project.ramezreda.resumy.roomdb.dao.ExperienceDao
 import project.ramezreda.resumy.roomdb.dao.SkillsDao
 import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
+import project.ramezreda.resumy.roomdb.entities.ExperienceEntity
 import project.ramezreda.resumy.roomdb.entities.SkillsEntity
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 
-@Database(entities = [BasicInfoEntity::class, SkillsEntity::class], version = 1)
+@Database(
+    entities = [BasicInfoEntity::class, SkillsEntity::class, ExperienceEntity::class],
+    version = 1
+)
 abstract class ResumeRoomDatabase : RoomDatabase() {
     abstract fun basicInfoDao(): BasicInfoDao?
     abstract fun skillsDao(): SkillsDao?
+    abstract fun experienceDao(): ExperienceDao?
 
 
     companion object {
@@ -29,7 +35,13 @@ abstract class ResumeRoomDatabase : RoomDatabase() {
 
         private var dbCallback: Callback = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
-                val basicInfo = BasicInfoEntity(fullName = "", email = "", phone = "", summary = "", picture =  null)
+                val basicInfo = BasicInfoEntity(
+                    fullName = "",
+                    email = "",
+                    phone = "",
+                    summary = "",
+                    picture = null
+                )
                 GlobalScope.launch {
                     instance?.basicInfoDao()?.insert(basicInfo)
                 }
@@ -42,7 +54,8 @@ abstract class ResumeRoomDatabase : RoomDatabase() {
                     if (instance == null) {
                         instance = Room.databaseBuilder(
                             context.applicationContext,
-                            ResumeRoomDatabase::class.java, "resumy_database")
+                            ResumeRoomDatabase::class.java, "resumy_database"
+                        )
                             .addCallback(dbCallback)
                             .build()
                     }
