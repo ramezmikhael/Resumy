@@ -8,6 +8,7 @@ import project.ramezreda.resumy.ui.MainActivity
 import project.ramezreda.resumy.ui.basicInfo.BasicInfoFragment
 import project.ramezreda.resumy.ui.basicInfo.BasicInfoViewModel
 import project.ramezreda.resumy.ui.education.EducationFragment
+import project.ramezreda.resumy.ui.home.HomeFragment
 import project.ramezreda.resumy.ui.skills.SkillsFragment
 import project.ramezreda.resumy.ui.skills.SkillsViewModel
 import project.ramezreda.resumy.ui.summary.SummaryFragment
@@ -23,6 +24,7 @@ interface AppComponent {
     fun inject(viewModel: BasicInfoViewModel)
     fun inject(viewModel: SkillsViewModel)
 
+    fun inject(homeFragment: HomeFragment)
     fun inject(basicInfoFragment: BasicInfoFragment)
     fun inject(educationFragment: EducationFragment)
     fun inject(summaryFragment: SummaryFragment)

@@ -31,8 +31,18 @@
             <include
                 android:id="@+id/segment_summary"
                 layout="@layout/home_summary"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="@dimen/eight_dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/segment_basic_info"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:id="@+id/segment_skills"
+                layout="@layout/home_skills"
+                android:layout_marginTop="@dimen/eight_dp"
+                android:layout_marginBottom="@dimen/eight_dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/segment_basic_info"

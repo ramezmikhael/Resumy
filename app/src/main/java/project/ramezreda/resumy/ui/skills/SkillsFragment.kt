@@ -78,6 +78,8 @@ class SkillsFragment : BaseFragment(), IItemsSelected {
     }
 
     private fun initSkillsRecyclerView() {
+        skillsDataAdapter.clickableItems = true
+
         val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
 
         skillsDataAdapter.itemsSelected = this

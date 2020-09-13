@@ -15,6 +15,7 @@ import javax.inject.Inject
 class SkillsDataAdapter @Inject constructor() :
     RecyclerView.Adapter<SkillsDataAdapter.SkillsViewHolder>() {
 
+    var clickableItems: Boolean = false
     var itemsSelected: IItemsSelected? = null
     var skills: List<SkillsEntity?>? = null
     val selectedSkills : MutableList<SkillsEntity> = mutableListOf()
@@ -50,15 +51,17 @@ class SkillsDataAdapter @Inject constructor() :
 
         fun bind(skillsEntity: SkillsEntity) {
             skillListItemBinding.textviewSkill.text = skillsEntity.skill
-            skillListItemBinding.root.setOnClickListener {
+            if(clickableItems) {
+                skillListItemBinding.root.setOnClickListener {
 
-                if(selectedSkills.contains(skillsEntity)) {
-                    unselectSkill(it, skillsEntity)
-                } else {
-                    selectSkill(it, skillsEntity)
+                    if(selectedSkills.contains(skillsEntity)) {
+                        unselectSkill(it, skillsEntity)
+                    } else {
+                        selectSkill(it, skillsEntity)
+                    }
+
+                    itemsSelected?.onItemsSelected(selectedSkills)
                 }
-
-                itemsSelected?.onItemsSelected(selectedSkills)
             }
         }
 

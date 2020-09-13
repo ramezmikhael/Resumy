@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    lateinit var navView: NavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,8 +44,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
+        navView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment)
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -100,6 +103,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initObservers(binding: ActivityMainBinding) {
         basicInfoViewModel.basicInfo?.observe(this, Observer {
+            if(it.isEmpty()) {
+                return@Observer
+            }
             binding.navView.nav_full_name.setText(it?.first()?.fullName)
             binding.navView.nav_email.setText(it?.first()?.email)
 

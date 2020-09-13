@@ -29,4 +29,6 @@
     <string name="add_skills_or_tools">Add skills or tools</string>
     <string name="add">Add</string>
     <string name="action_delete">Delete</string>
+    <string name="skills">SKILLS</string>
+    <string name="summary">SUMMARY</string>
 </resources>
