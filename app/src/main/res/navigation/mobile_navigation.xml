@@ -56,11 +56,24 @@
         android:id="@+id/nav_experience"
         android:name="project.ramezreda.resumy.ui.experience.ExperienceFragment"
         android:label="@string/menu_experience"
-        tools:layout="@layout/fragment_experience" />
+        tools:layout="@layout/fragment_experience" >
+        <action
+            android:id="@+id/action_nav_experience_to_addExperienceFragment"
+            app:destination="@id/addExperienceFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_education"
         android:name="project.ramezreda.resumy.ui.education.EducationFragment"
         android:label="@string/menu_education"
         tools:layout="@layout/fragment_education" />
+    <fragment
+        android:id="@+id/addExperienceFragment"
+        android:name="project.ramezreda.resumy.ui.experience.AddExperienceFragment"
+        android:label="@string/add_experience"
+        tools:layout="@layout/add_experience_fragment" />
 </navigation>
