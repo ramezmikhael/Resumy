@@ -75,5 +75,5 @@
         android:id="@+id/addExperienceFragment"
         android:name="project.ramezreda.resumy.ui.experience.AddExperienceFragment"
         android:label="@string/add_experience"
-        tools:layout="@layout/add_experience_fragment" />
+        tools:layout="@layout/fragment_add_experience" />
 </navigation>

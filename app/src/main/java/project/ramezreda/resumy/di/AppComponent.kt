@@ -8,6 +8,10 @@ import project.ramezreda.resumy.ui.MainActivity
 import project.ramezreda.resumy.ui.basicInfo.BasicInfoFragment
 import project.ramezreda.resumy.ui.basicInfo.BasicInfoViewModel
 import project.ramezreda.resumy.ui.education.EducationFragment
+import project.ramezreda.resumy.ui.experience.AddExperienceFragment
+import project.ramezreda.resumy.ui.experience.AddExperienceViewModel
+import project.ramezreda.resumy.ui.experience.ExperienceFragment
+import project.ramezreda.resumy.ui.experience.ExperienceViewModel
 import project.ramezreda.resumy.ui.home.HomeFragment
 import project.ramezreda.resumy.ui.skills.SkillsFragment
 import project.ramezreda.resumy.ui.skills.SkillsViewModel
@@ -23,15 +27,17 @@ interface AppComponent {
 
     fun inject(viewModel: BasicInfoViewModel)
     fun inject(viewModel: SkillsViewModel)
+    fun inject(addExperienceViewModel: AddExperienceViewModel)
+    fun inject(experienceViewModel: ExperienceViewModel)
 
     fun inject(homeFragment: HomeFragment)
     fun inject(basicInfoFragment: BasicInfoFragment)
     fun inject(educationFragment: EducationFragment)
     fun inject(summaryFragment: SummaryFragment)
     fun inject(skillsFragment: SkillsFragment)
+    fun inject(addExperienceFragment: AddExperienceFragment)
+    fun inject(experienceFragment: ExperienceFragment)
 
     fun inject(mainActivity: MainActivity)
-
     fun inject(notification: Notification)
-
 }
