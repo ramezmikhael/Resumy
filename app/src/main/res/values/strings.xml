@@ -41,4 +41,7 @@
     <string name="until_date">Until date</string>
     <string name="describe_your_responsibilities_and_achievements">Describe your responsibilities and achievements</string>
     <string name="present">Present</string>
+    <string name="edit_skills">Edit Skills</string>
+    <string name="edit_basic_information">Edit basic information</string>
+    <string name="edit_summary">Edit summary</string>
 </resources>
