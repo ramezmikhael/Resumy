@@ -9,7 +9,6 @@ import project.ramezreda.resumy.ui.basicInfo.BasicInfoFragment
 import project.ramezreda.resumy.ui.basicInfo.BasicInfoViewModel
 import project.ramezreda.resumy.ui.education.EducationFragment
 import project.ramezreda.resumy.ui.experience.AddExperienceFragment
-import project.ramezreda.resumy.ui.experience.AddExperienceViewModel
 import project.ramezreda.resumy.ui.experience.ExperienceFragment
 import project.ramezreda.resumy.ui.experience.ExperienceViewModel
 import project.ramezreda.resumy.ui.home.HomeFragment
@@ -27,7 +26,6 @@ interface AppComponent {
 
     fun inject(viewModel: BasicInfoViewModel)
     fun inject(viewModel: SkillsViewModel)
-    fun inject(addExperienceViewModel: AddExperienceViewModel)
     fun inject(experienceViewModel: ExperienceViewModel)
 
     fun inject(homeFragment: HomeFragment)

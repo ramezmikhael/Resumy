@@ -1,7 +1,5 @@
 package project.ramezreda.resumy.utils
 
-import android.R.attr.maxHeight
-import android.R.attr.maxWidth
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log

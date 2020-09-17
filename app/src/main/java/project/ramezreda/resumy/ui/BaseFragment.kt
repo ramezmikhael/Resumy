@@ -16,7 +16,7 @@ abstract class BaseFragment: Fragment() {
     @LayoutRes
     abstract fun getLayoutRes(): Int
 
-    protected var screenMode: ScreenMode = ScreenMode.Normal
+    protected var screenMode: ScreenMode = ScreenMode.Add
 
     override fun onCreateView(
         inflater: LayoutInflater,

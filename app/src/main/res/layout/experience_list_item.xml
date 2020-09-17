@@ -12,7 +12,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
 
         <TextView
             android:id="@+id/textViewCompany"
@@ -76,9 +78,22 @@
             android:layout_marginBottom="16dp"
             android:textColor="@color/colorText"
             android:textSize="@dimen/section_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewStartDate"
             tools:text="Job summary and description and achievements" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/eight_dp"
+            android:layout_marginLeft="@dimen/eight_dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/eight_dp"
+            android:layout_marginRight="@dimen/eight_dp"
+            android:background="@color/lightGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

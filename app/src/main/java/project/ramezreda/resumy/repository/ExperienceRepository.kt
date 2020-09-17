@@ -4,9 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import project.ramezreda.resumy.roomdb.ResumeRoomDatabase
 import project.ramezreda.resumy.roomdb.dao.ExperienceDao
-import project.ramezreda.resumy.roomdb.dao.SkillsDao
 import project.ramezreda.resumy.roomdb.entities.ExperienceEntity
-import project.ramezreda.resumy.roomdb.entities.SkillsEntity
 import javax.inject.Inject
 
 class ExperienceRepository @Inject constructor(application: Application) {
@@ -28,5 +26,9 @@ class ExperienceRepository @Inject constructor(application: Application) {
 
     fun getAll(): LiveData<List<ExperienceEntity?>> {
         return experienceDao?.getAll()!!
+    }
+
+    suspend fun update(it: ExperienceEntity) : Int? {
+        return experienceDao?.update(it)
     }
 }

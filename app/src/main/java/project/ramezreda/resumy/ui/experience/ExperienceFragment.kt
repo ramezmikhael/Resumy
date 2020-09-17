@@ -5,29 +5,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.fab_layout.view.*
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentExperienceBinding
 import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
+import project.ramezreda.resumy.roomdb.entities.ExperienceEntity
 import project.ramezreda.resumy.ui.BaseFragment
-import project.ramezreda.resumy.ui.skills.SkillsDataAdapter
+import project.ramezreda.resumy.utils.OperationState
+import project.ramezreda.resumy.utils.ScreenMode
 import javax.inject.Inject
 
-class ExperienceFragment : BaseFragment() {
+class ExperienceFragment : BaseFragment(), ExperienceClickListener {
+
+    override fun getLayoutRes(): Int = R.layout.fragment_experience
 
     @Inject
     lateinit var adapter: ExperienceDataAdapter
 
-    private val viewModel: ExperienceViewModel by lazy {
-        ViewModelProvider(this).get(ExperienceViewModel::class.java)
-    }
+    private val viewModel: ExperienceViewModel by activityViewModels()
 
     private lateinit var experienceBinding: FragmentExperienceBinding
 
@@ -43,15 +44,20 @@ class ExperienceFragment : BaseFragment() {
         initSkillsRecyclerView()
 
         experienceBinding.fabLayout.fab.setOnClickListener {
-            val action = ExperienceFragmentDirections.actionNavExperienceToAddExperienceFragment()
-            it.findNavController().navigate(action)
+            setAddMode()
+            openAddExperienceFragment()
         }
 
         return binding.root
     }
 
+    private fun openAddExperienceFragment() {
+        val action = ExperienceFragmentDirections.actionNavExperienceToAddExperienceFragment()
+        findNavController().navigate(action)
+    }
+
     private fun initObservers() {
-        viewModel.experience?.observe(viewLifecycleOwner, Observer {
+        viewModel.experienceList?.observe(viewLifecycleOwner, Observer {
             if (it.isEmpty()) {
                 experienceBinding.noExperienceTextView.visibility = View.VISIBLE
                 experienceBinding.experienceRecyclerView.visibility = View.GONE
@@ -59,7 +65,7 @@ class ExperienceFragment : BaseFragment() {
                 experienceBinding.noExperienceTextView.visibility = View.GONE
                 experienceBinding.experienceRecyclerView.visibility = View.VISIBLE
 
-                viewModel.experience?.value?.let { experience ->
+                viewModel.experienceList?.value?.let { experience ->
                     adapter.setData(experience)
                     adapter.notifyDataSetChanged()
                 }
@@ -73,9 +79,8 @@ class ExperienceFragment : BaseFragment() {
     }
 
     private fun initSkillsRecyclerView() {
-        adapter.clickableItems = true
+        adapter.clickListener = this
         val layoutManager = LinearLayoutManager(context)
-//        adapter.itemsSelecteded = this
         experienceBinding.experienceRecyclerView.adapter = adapter
         experienceBinding.experienceRecyclerView.layoutManager = layoutManager
     }
@@ -92,6 +97,21 @@ class ExperienceFragment : BaseFragment() {
             .build().inject(this)
     }
 
-    override fun getLayoutRes(): Int = R.layout.fragment_experience
+    override fun onExperienceSelected(experienceEntity: ExperienceEntity) {
+        setUpdateMode()
 
+        viewModel.experience.postValue(experienceEntity)
+        openAddExperienceFragment()
+    }
+
+    private fun setUpdateMode() {
+        viewModel.screenMode = ScreenMode.Update
+        viewModel.state.postValue(OperationState.StandBy)
+    }
+
+    private fun setAddMode() {
+        viewModel.experience.postValue(null)
+        viewModel.screenMode = ScreenMode.Add
+        viewModel.state.postValue(OperationState.StandBy)
+    }
 }

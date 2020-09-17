@@ -2,7 +2,6 @@ package project.ramezreda.resumy.roomdb.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import project.ramezreda.resumy.roomdb.entities.BasicInfoEntity
 import project.ramezreda.resumy.roomdb.entities.ExperienceEntity
 
 @Dao

@@ -114,9 +114,9 @@ class SkillsFragment : BaseFragment(), IItemsSelected {
         selectedSkills = skills
 
         screenMode = if(skills.count() > 0)
-            ScreenMode.Edit
+            ScreenMode.Update
         else
-            ScreenMode.Normal
+            ScreenMode.Add
 
         activity?.invalidateOptionsMenu()
     }
@@ -129,7 +129,7 @@ class SkillsFragment : BaseFragment(), IItemsSelected {
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
 
-        menu.findItem(R.id.action_delete).isVisible = screenMode != ScreenMode.Normal
+        menu.findItem(R.id.action_delete).isVisible = screenMode != ScreenMode.Add
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

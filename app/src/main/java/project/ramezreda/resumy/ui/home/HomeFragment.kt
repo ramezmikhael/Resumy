@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_basic_info.view.*
@@ -16,7 +15,6 @@ import kotlinx.android.synthetic.main.home_skills.view.*
 import kotlinx.android.synthetic.main.home_summary.view.*
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentHomeBinding
-import project.ramezreda.resumy.databinding.FragmentSkillsBinding
 import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
