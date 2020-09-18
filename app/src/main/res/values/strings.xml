@@ -13,8 +13,6 @@
     <string name="menu_skills"><![CDATA[Skills & Tools]]></string>
     <string name="menu_experience">Experience</string>
     <string name="menu_education">Education</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name">Name</string>
     <string name="your_full_name">Your full name</string>
     <string name="click_to_change_image">Click to change image!</string>
@@ -36,12 +34,46 @@
     <string name="title">Position Title</string>
     <string name="company_name">Company Name</string>
     <string name="country_and_or_city">Country and/or City</string>
-    <string name="start_date">Start Date</string>
     <string name="currently_working_here">Currently working here.</string>
-    <string name="until_date">Until date</string>
     <string name="describe_your_responsibilities_and_achievements">Describe your responsibilities and achievements</string>
     <string name="present">Present</string>
     <string name="edit_skills">Edit Skills</string>
     <string name="edit_basic_information">Edit basic information</string>
     <string name="edit_summary">Edit summary</string>
+    <string name="start_month">Start Month</string>
+    <string name="start_year">Start Year</string>
+    <string name="until_month">Until Month</string>
+    <string name="until_year">Until Year</string>
+    <string name="until">-</string>
+    <string name="experience">Experience</string>
+
+    <array name="month_short_names">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </array>
+
+    <array name="month_full_names">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
 </resources>

@@ -25,12 +25,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/experienceRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/experience_list_item"/>
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/experience_list_item" />
 
         <include
             android:id="@+id/fab_layout"
-            layout="@layout/fab_layout" />
+            layout="@layout/layout_fab" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

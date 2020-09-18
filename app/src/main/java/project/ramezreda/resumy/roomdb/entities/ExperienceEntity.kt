@@ -10,8 +10,10 @@ data class ExperienceEntity(
 
     var company: String? = null,
     var location: String? = null,
-    var startDate: String? = null,
-    var endDate: String? = null,
+    var startMonth: Int? = null,
+    var startYear: Int? = null,
+    var endMonth: Int? = null,
+    var endYear: Int? = null,
     var position: String? = null,
     var description: String? = null
 )

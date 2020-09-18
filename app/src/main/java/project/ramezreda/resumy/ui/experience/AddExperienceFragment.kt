@@ -3,7 +3,6 @@ package project.ramezreda.resumy.ui.experience
 import android.app.Application
 import android.os.Bundle
 import android.view.*
-import android.widget.CompoundButton
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -51,7 +50,8 @@ class AddExperienceFragment : BaseFragment() {
 
     private fun initUIActions() {
         dataBinding.checkBoxNoEndDate.setOnCheckedChangeListener { _, isChecked ->
-            dataBinding.editTextEndDate.isVisible = !isChecked
+            dataBinding.editTextEndMonth.isVisible = !isChecked
+            dataBinding.editTextEndYear.isVisible = !isChecked
         }
     }
 
@@ -77,11 +77,15 @@ class AddExperienceFragment : BaseFragment() {
         dataBinding.editTextCompany.setText(experience?.company)
         dataBinding.editTextLocation.setText(experience?.location)
         dataBinding.editTextDescription.setText(experience?.description)
-        dataBinding.editTextStartDate.setText(experience?.startDate)
+        dataBinding.editTextStartMonth.setText(experience?.startMonth.toString())
+        dataBinding.editTextStartYear.setText(experience?.startYear.toString())
 
-        dataBinding.checkBoxNoEndDate.isChecked = experience?.endDate.isNullOrEmpty()
-        dataBinding.editTextEndDate.isVisible = !dataBinding.checkBoxNoEndDate.isChecked
-        dataBinding.editTextEndDate.setText(experience?.endDate)
+        val currentPosition = experience?.endYear == null
+        dataBinding.checkBoxNoEndDate.isChecked = currentPosition
+        dataBinding.editTextEndMonth.isVisible = currentPosition
+        dataBinding.editTextEndYear.isVisible = currentPosition
+        dataBinding.editTextEndMonth.setText(experience?.endMonth.toString())
+        dataBinding.editTextEndYear.setText(experience?.endYear.toString())
 
         viewModel.screenMode = ScreenMode.Update
     }
@@ -100,15 +104,21 @@ class AddExperienceFragment : BaseFragment() {
     }
 
     private fun fillExperienceFields() {
-        val endDate: String? =
-            if (dataBinding.checkBoxNoEndDate.isChecked) null else dataBinding.editTextEndDate.text.toString()
+        val currentPosition = dataBinding.checkBoxNoEndDate.isChecked
+        val endMonth: Int? =
+            if (currentPosition) null else dataBinding.editTextEndMonth.text.toString().toInt()
+        val endYear: Int? =
+            if (currentPosition) null else dataBinding.editTextEndYear.text.toString().toInt()
+
         val experience = ExperienceEntity(
             id = viewModel.experience.value?.id ?: 0,
             position = dataBinding.editTextPosition.text.toString(),
             company = dataBinding.editTextCompany.text.toString(),
             location = dataBinding.editTextLocation.text.toString(),
-            startDate = dataBinding.editTextStartDate.text.toString(),
-            endDate = endDate,
+            startMonth = dataBinding.editTextStartMonth.text.toString().toInt(),
+            startYear = dataBinding.editTextStartYear.text.toString().toInt(),
+            endMonth = endMonth,
+            endYear = endYear,
             description = dataBinding.editTextDescription.text.toString()
         )
 

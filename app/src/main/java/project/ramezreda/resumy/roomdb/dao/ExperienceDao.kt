@@ -15,7 +15,7 @@ interface ExperienceDao {
     @Query("DELETE FROM experience")
     fun deleteAll()
 
-    @Query("SELECT * FROM experience")
+    @Query("SELECT * FROM experience ORDER BY startYear DESC, startMonth DESC")
     fun getAll() : LiveData<List<ExperienceEntity?>>
 
     @Delete

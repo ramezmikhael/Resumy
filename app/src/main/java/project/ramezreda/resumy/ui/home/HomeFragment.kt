@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import kotlinx.android.synthetic.main.fragment_experience.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_basic_info.view.*
+import kotlinx.android.synthetic.main.home_experience.view.*
 import kotlinx.android.synthetic.main.home_skills.view.*
 import kotlinx.android.synthetic.main.home_summary.view.*
 import project.ramezreda.resumy.R
@@ -19,6 +22,7 @@ import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.ui.BaseFragment
+import project.ramezreda.resumy.ui.experience.ExperienceDataAdapter
 import project.ramezreda.resumy.ui.skills.SkillsDataAdapter
 import project.ramezreda.resumy.utils.ImageConverter
 import javax.inject.Inject
@@ -29,6 +33,9 @@ class HomeFragment : BaseFragment() {
 
     @Inject
     lateinit var skillsDataAdapter: SkillsDataAdapter
+
+    @Inject
+    lateinit var experienceDataAdapter: ExperienceDataAdapter
 
     lateinit var homeBinding: FragmentHomeBinding
 
@@ -42,6 +49,7 @@ class HomeFragment : BaseFragment() {
         initDagger()
         initDataBinding()
         initSkillsRecyclerView()
+        initExperienceRecyclerView()
         initObservers()
 
         homeBinding.segmentBasicInfo.editBasicInfo.setOnClickListener {
@@ -54,6 +62,10 @@ class HomeFragment : BaseFragment() {
         }
         homeBinding.segmentSkills.editSkills.setOnClickListener {
             val action = HomeFragmentDirections.actionNavHomeToNavSkills()
+            it.findNavController().navigate(action)
+        }
+        homeBinding.segmentExperience.editExperience.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavHomeToNavExperience()
             it.findNavController().navigate(action)
         }
 
@@ -96,13 +108,24 @@ class HomeFragment : BaseFragment() {
             skillsDataAdapter.setData(it)
             skillsDataAdapter.notifyDataSetChanged()
         })
+
+        homeViewModel.experience?.observe(viewLifecycleOwner, {
+            experienceDataAdapter.setData(it)
+            experienceDataAdapter.notifyDataSetChanged()
+        })
     }
 
-    fun initSkillsRecyclerView() {
+    private fun initSkillsRecyclerView() {
         skillsDataAdapter.clickableItems = false
         homeBinding.segmentSkills.recycler_view_skills.adapter = skillsDataAdapter
         homeBinding.segmentSkills.recycler_view_skills.layoutManager =
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+    }
+
+    private fun initExperienceRecyclerView() {
+        homeBinding.segmentExperience.experienceList.adapter = experienceDataAdapter
+        homeBinding.segmentExperience.experienceList.layoutManager =
+            LinearLayoutManager(context)
     }
 
     override fun getLayoutRes(): Int = R.layout.fragment_home

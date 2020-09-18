@@ -8,7 +8,7 @@
             name="viewModel"
             type="project.ramezreda.resumy.ui.home.HomeViewModel" />
     </data>
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -48,6 +48,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/segment_basic_info"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" />
+
+            <include
+                android:id="@+id/segment_experience"
+                layout="@layout/home_experience"
+                android:layout_marginTop="@dimen/eight_dp"
+                android:layout_marginBottom="@dimen/eight_dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/segment_skills"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

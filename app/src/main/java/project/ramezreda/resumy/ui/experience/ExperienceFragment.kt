@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fab_layout.view.*
+import kotlinx.android.synthetic.main.layout_fab.view.*
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.FragmentExperienceBinding
 import project.ramezreda.resumy.di.ApplicationContextModule

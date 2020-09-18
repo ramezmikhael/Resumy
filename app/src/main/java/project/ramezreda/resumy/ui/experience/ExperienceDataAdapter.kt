@@ -6,10 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import project.ramezreda.resumy.R
 import project.ramezreda.resumy.databinding.ExperienceListItemBinding
 import project.ramezreda.resumy.roomdb.entities.ExperienceEntity
+import project.ramezreda.resumy.utils.MonthsConverter
 import javax.inject.Inject
 
 class ExperienceDataAdapter @Inject constructor() :
     RecyclerView.Adapter<ExperienceDataAdapter.ExperienceViewHolder>() {
+
+    @Inject
+    lateinit var monthsConverter: MonthsConverter
 
     var experiences: List<ExperienceEntity?>? = null
 
@@ -41,14 +45,22 @@ class ExperienceDataAdapter @Inject constructor() :
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(entity: ExperienceEntity) {
+            val context = itemBinding.root.context
+
             itemBinding.textViewPosition.text = entity.position
             itemBinding.textViewCompany.text = entity.company
             itemBinding.textViewLocation.text = entity.location
             itemBinding.textViewDescription.text = entity.description
 
-            val endDate: String =
-                entity.endDate ?: itemBinding.root.context.getString(R.string.present)
-            itemBinding.textViewStartDate.text = "${entity.startDate} - $endDate"
+            val endDate: String? =
+                if (entity.endYear == null) "Present" else "${
+                    entity.endMonth?.let { monthsConverter.monthNumberToShortName(it) }
+                } ${entity.endYear}"
+
+            itemBinding.textViewStartDate.text =
+                "${entity.startMonth?.let { monthsConverter.monthNumberToShortName(it) }} ${entity.startYear} ${
+                    context.getString(R.string.until)
+                } $endDate"
 
             itemBinding.root.setOnClickListener {
                 clickListener?.onExperienceSelected(entity)
