@@ -7,6 +7,6 @@
     <color name="colorText">#1f2022</color>
     <color name="lightGray">#C6CBD2</color>
 
-    <color name="skillBackground">#FED1CF</color>
+    <color name="skillBackground">@android:color/transparent</color>
     <color name="skillTextColor">#9D0000</color>
 </resources>

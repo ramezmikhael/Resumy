@@ -1,4 +1,4 @@
-package project.ramezreda.resumy.ui.experience
+package project.ramezreda.resumy.ui.fragments
 
 import android.app.Application
 import android.os.Bundle
@@ -14,10 +14,10 @@ import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.notifications.Notification
 import project.ramezreda.resumy.roomdb.entities.ExperienceEntity
 import project.ramezreda.resumy.ui.BaseFragment
+import project.ramezreda.resumy.ui.viewModels.ExperienceViewModel
 import project.ramezreda.resumy.utils.OperationState
 import project.ramezreda.resumy.utils.ScreenMode
 import javax.inject.Inject
-import kotlin.math.exp
 
 class AddExperienceFragment : BaseFragment() {
 

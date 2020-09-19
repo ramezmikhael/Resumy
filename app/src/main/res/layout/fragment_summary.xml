@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="project.ramezreda.resumy.ui.summary.SummaryViewModel" />
+            type="project.ramezreda.resumy.ui.viewModels.SummaryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.summary.SummaryFragment">
+        tools:context=".ui.fragments.SummaryFragment">
 
         <EditText
             android:id="@+id/text_summary"

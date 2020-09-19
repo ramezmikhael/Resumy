@@ -1,4 +1,4 @@
-package project.ramezreda.resumy.ui.basicInfo
+package project.ramezreda.resumy.ui.fragments
 
 import android.app.Application
 import android.content.Intent
@@ -19,6 +19,7 @@ import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.notifications.INotification
 import project.ramezreda.resumy.ui.BaseFragment
+import project.ramezreda.resumy.ui.viewModels.BasicInfoViewModel
 import project.ramezreda.resumy.utils.ImageConverter
 import javax.inject.Inject
 

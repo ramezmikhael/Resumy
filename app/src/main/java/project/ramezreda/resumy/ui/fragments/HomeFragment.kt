@@ -1,4 +1,4 @@
-package project.ramezreda.resumy.ui.home
+package project.ramezreda.resumy.ui.fragments
 
 import android.app.Application
 import android.os.Bundle
@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import kotlinx.android.synthetic.main.fragment_experience.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_basic_info.view.*
 import kotlinx.android.synthetic.main.home_experience.view.*
@@ -22,8 +21,9 @@ import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.ui.BaseFragment
-import project.ramezreda.resumy.ui.experience.ExperienceDataAdapter
-import project.ramezreda.resumy.ui.skills.SkillsDataAdapter
+import project.ramezreda.resumy.ui.adapters.ExperienceDataAdapter
+import project.ramezreda.resumy.ui.viewModels.HomeViewModel
+import project.ramezreda.resumy.ui.adapters.SkillsDataAdapter
 import project.ramezreda.resumy.utils.ImageConverter
 import javax.inject.Inject
 
@@ -123,8 +123,8 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initExperienceRecyclerView() {
-        homeBinding.segmentExperience.experienceList.adapter = experienceDataAdapter
-        homeBinding.segmentExperience.experienceList.layoutManager =
+        homeBinding.segmentExperience.recyclerViewExperience.adapter = experienceDataAdapter
+        homeBinding.segmentExperience.recyclerViewExperience.layoutManager =
             LinearLayoutManager(context)
     }
 

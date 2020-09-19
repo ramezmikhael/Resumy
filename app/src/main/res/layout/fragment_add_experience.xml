@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.experience.AddExperienceFragment">
+    tools:context=".ui.fragments.AddExperienceFragment">
 
     <data>
         <variable
             name="viewModel"
-            type="project.ramezreda.resumy.ui.experience.ExperienceViewModel" />
+            type="project.ramezreda.resumy.ui.viewModels.ExperienceViewModel" />
     </data>
 
     <ScrollView

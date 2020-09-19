@@ -21,7 +21,7 @@ import project.ramezreda.resumy.databinding.ActivityMainBinding
 import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
-import project.ramezreda.resumy.ui.basicInfo.BasicInfoViewModel
+import project.ramezreda.resumy.ui.viewModels.BasicInfoViewModel
 import project.ramezreda.resumy.utils.ImageConverter
 import javax.inject.Inject
 

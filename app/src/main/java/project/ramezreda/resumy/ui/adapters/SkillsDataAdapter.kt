@@ -1,4 +1,4 @@
-package project.ramezreda.resumy.ui.skills
+package project.ramezreda.resumy.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View

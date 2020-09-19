@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="project.ramezreda.resumy.ui.basicInfo.BasicInfoViewModel" />
+            type="project.ramezreda.resumy.ui.viewModels.BasicInfoViewModel" />
 
     </data>
 

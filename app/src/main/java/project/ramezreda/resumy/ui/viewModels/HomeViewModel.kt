@@ -1,4 +1,4 @@
-package project.ramezreda.resumy.ui.home
+package project.ramezreda.resumy.ui.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

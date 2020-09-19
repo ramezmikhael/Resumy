@@ -1,4 +1,4 @@
-package project.ramezreda.resumy.ui.education
+package project.ramezreda.resumy.ui.fragments
 
 import android.app.Application
 import android.os.Bundle
@@ -12,6 +12,7 @@ import project.ramezreda.resumy.di.ApplicationContextModule
 import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.ui.BaseFragment
+import project.ramezreda.resumy.ui.viewModels.EducationViewModel
 import javax.inject.Inject
 
 class EducationFragment : BaseFragment() {

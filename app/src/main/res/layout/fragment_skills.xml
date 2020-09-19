@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="project.ramezreda.resumy.ui.skills.SkillsViewModel" />
+            type="project.ramezreda.resumy.ui.viewModels.SkillsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.skills.SkillsFragment">
+        tools:context=".ui.fragments.SkillsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_skills"

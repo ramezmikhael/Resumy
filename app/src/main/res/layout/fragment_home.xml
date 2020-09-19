@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="project.ramezreda.resumy.ui.home.HomeViewModel" />
+            type="project.ramezreda.resumy.ui.viewModels.HomeViewModel" />
     </data>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.home.HomeFragment"
+            tools:context=".ui.fragments.HomeFragment"
             android:padding="8dp"
             android:orientation="vertical">
 

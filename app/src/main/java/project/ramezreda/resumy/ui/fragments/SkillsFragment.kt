@@ -1,4 +1,4 @@
-package project.ramezreda.resumy.ui.skills
+package project.ramezreda.resumy.ui.fragments
 
 import android.app.Application
 import android.os.Bundle
@@ -17,6 +17,8 @@ import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.notifications.INotification
 import project.ramezreda.resumy.roomdb.entities.SkillsEntity
 import project.ramezreda.resumy.ui.BaseFragment
+import project.ramezreda.resumy.ui.adapters.SkillsDataAdapter
+import project.ramezreda.resumy.ui.viewModels.SkillsViewModel
 import project.ramezreda.resumy.utils.IItemsSelected
 import project.ramezreda.resumy.utils.ScreenMode
 import javax.inject.Inject

@@ -5,16 +5,16 @@ import android.content.Context
 import dagger.Component
 import project.ramezreda.resumy.notifications.Notification
 import project.ramezreda.resumy.ui.MainActivity
-import project.ramezreda.resumy.ui.basicInfo.BasicInfoFragment
-import project.ramezreda.resumy.ui.basicInfo.BasicInfoViewModel
-import project.ramezreda.resumy.ui.education.EducationFragment
-import project.ramezreda.resumy.ui.experience.AddExperienceFragment
-import project.ramezreda.resumy.ui.experience.ExperienceFragment
-import project.ramezreda.resumy.ui.experience.ExperienceViewModel
-import project.ramezreda.resumy.ui.home.HomeFragment
-import project.ramezreda.resumy.ui.skills.SkillsFragment
-import project.ramezreda.resumy.ui.skills.SkillsViewModel
-import project.ramezreda.resumy.ui.summary.SummaryFragment
+import project.ramezreda.resumy.ui.fragments.BasicInfoFragment
+import project.ramezreda.resumy.ui.viewModels.BasicInfoViewModel
+import project.ramezreda.resumy.ui.fragments.EducationFragment
+import project.ramezreda.resumy.ui.fragments.AddExperienceFragment
+import project.ramezreda.resumy.ui.fragments.ExperienceFragment
+import project.ramezreda.resumy.ui.viewModels.ExperienceViewModel
+import project.ramezreda.resumy.ui.fragments.HomeFragment
+import project.ramezreda.resumy.ui.fragments.SkillsFragment
+import project.ramezreda.resumy.ui.viewModels.SkillsViewModel
+import project.ramezreda.resumy.ui.fragments.SummaryFragment
 import javax.inject.Singleton
 
 @Component(modules = [ApplicationContextModule::class, NotificationsModule::class])

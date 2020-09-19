@@ -1,4 +1,4 @@
-package project.ramezreda.resumy.ui.summary
+package project.ramezreda.resumy.ui.fragments
 
 import android.app.Application
 import android.os.Bundle
@@ -16,6 +16,7 @@ import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.notifications.INotification
 import project.ramezreda.resumy.ui.BaseFragment
+import project.ramezreda.resumy.ui.viewModels.SummaryViewModel
 import javax.inject.Inject
 
 class SummaryFragment : BaseFragment() {

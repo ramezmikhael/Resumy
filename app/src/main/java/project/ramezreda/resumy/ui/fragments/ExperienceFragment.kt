@@ -1,4 +1,4 @@
-package project.ramezreda.resumy.ui.experience
+package project.ramezreda.resumy.ui.fragments
 
 import android.app.Application
 import android.os.Bundle
@@ -17,6 +17,9 @@ import project.ramezreda.resumy.di.DaggerAppComponent
 import project.ramezreda.resumy.di.NotificationsModule
 import project.ramezreda.resumy.roomdb.entities.ExperienceEntity
 import project.ramezreda.resumy.ui.BaseFragment
+import project.ramezreda.resumy.ui.adapters.ExperienceClickListener
+import project.ramezreda.resumy.ui.adapters.ExperienceDataAdapter
+import project.ramezreda.resumy.ui.viewModels.ExperienceViewModel
 import project.ramezreda.resumy.utils.OperationState
 import project.ramezreda.resumy.utils.ScreenMode
 import javax.inject.Inject
@@ -59,11 +62,11 @@ class ExperienceFragment : BaseFragment(), ExperienceClickListener {
     private fun initObservers() {
         viewModel.experienceList?.observe(viewLifecycleOwner, Observer {
             if (it.isEmpty()) {
-                experienceBinding.noExperienceTextView.visibility = View.VISIBLE
-                experienceBinding.experienceRecyclerView.visibility = View.GONE
+                experienceBinding.textViewNoExperience.visibility = View.VISIBLE
+                experienceBinding.recyclerViewExperience.visibility = View.GONE
             } else {
-                experienceBinding.noExperienceTextView.visibility = View.GONE
-                experienceBinding.experienceRecyclerView.visibility = View.VISIBLE
+                experienceBinding.textViewNoExperience.visibility = View.GONE
+                experienceBinding.recyclerViewExperience.visibility = View.VISIBLE
 
                 viewModel.experienceList?.value?.let { experience ->
                     adapter.setData(experience)
@@ -81,8 +84,8 @@ class ExperienceFragment : BaseFragment(), ExperienceClickListener {
     private fun initSkillsRecyclerView() {
         adapter.clickListener = this
         val layoutManager = LinearLayoutManager(context)
-        experienceBinding.experienceRecyclerView.adapter = adapter
-        experienceBinding.experienceRecyclerView.layoutManager = layoutManager
+        experienceBinding.recyclerViewExperience.adapter = adapter
+        experienceBinding.recyclerViewExperience.layoutManager = layoutManager
     }
 
     private fun initDagger() {
